@@ -6,21 +6,33 @@
         <br>
         <br>
         <h1>Sign-Up</h1>
-        <label for="">Firstname</label>
-        <input type="text"><br>
-        <label for="">Lastname</label>
-        <input type="text" name="" id=""><br>
-        <label for="">Username</label>
-        <input type="text"><br>
-        <label for="">Email</label>
-        <input type="email"><br>
-        <label for="">Password</label>
-        <input type="password"><br>
-        <label for="">Confirm Password</label>
-        <input type="password"><br>
+        <div class="textField">
+          <label for="">Firstname</label>
+          <input type="text">
+        </div>
+        <div class="textField">
+          <label for="">Lastname</label>
+          <input type="text" name="" id="">
+        </div>
+        <div class="textField">
+          <label for="">Username</label>
+          <input type="text">
+        </div>
+        <div class="textField">
+          <label for="">Email</label>
+          <input type="email">
+        </div>
+        <div class="textField">
+          <label for="">Password</label>
+          <input type="password">
+        </div>
+        <div class="textField">
+          <label for="">Confirm Password</label>
+          <input type="password">
+        </div>
         <button type="submit" class="activeBtn">Sign-Up</button>
-        <br><br><br>
-        <p>If you have your account, Please click <NuxtLink to="/login">Login</NuxtLink></p>
+        <br>
+        <p>If you have your account, Please click <NuxtLink to="/login" class="underline text-blue-500">Login</NuxtLink></p>
       </form>
       
     </div>

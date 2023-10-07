@@ -6,13 +6,17 @@
         <br>
         <br>
         <h1>Log-In</h1>
-        <label for="">Username</label>
-        <input type="text"><br>
-        <label for="">Password</label>
-        <input type="password" name="" id=""><br>
+        <div class="textField">
+          <label for="">Username</label>
+          <input type="text"><br>
+        </div>
+        <div class="textField">
+          <label for="">Password</label>
+          <input type="password" name="" id=""><br>
+        </div>
         <button type="submit" class="activeBtn">Login</button>
         <br><br><br>
-        <p>If you don't have your account, Please click <NuxtLink to="/signup">Sign-Up</NuxtLink></p>
+        <p>If you don't have your account, Please click <NuxtLink to="/signup" class="underline text-blue-500">Sign-Up</NuxtLink></p>
       </form>
       
     </div>

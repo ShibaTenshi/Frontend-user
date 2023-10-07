@@ -1,72 +1,37 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .topnav{
-    background-color: #94A684;
-    overflow: hidden;
+    @apply bg-[#94A684] overflow-hidden
 }
 
 .navLink{
-    font-size: 25px;
-    padding: 10px;
-    color: white;
-    float: left;
-    text-decoration: none;
+    @apply text-[25px] p-[10px] text-white float-left font-bold hover:bg-white hover:text-black
 }
 
 .access{
-    float: right;
-}
-
-.navLink:hover{
-    background-color: white;
-    color: black;
+    @apply float-right
 }
 
 .homepage{
-    position: relative;
+    @apply relative
 }
 
 .homepage .topic{
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    text-align: center;
+    @apply absolute top-[50px] left-[50%] translate-x-[-50%] text-white text-center text-[30px]
 }
 
 .topic label{
-    margin-right: 20px;
-    font-size: 24px;
-    font-weight: bold;
+    @apply mr-[20px] text-[24px] font-bold
 }
 
 input[type=text], input[type=password], input[type=email]{
-    width: 380px;
-    border-radius: 25px;
-    margin: 10px;
-    font-size: 16px;
-    padding: 5px 20px;
-}
-
-input[type=text]:focus{
-    border: solid 3px black;
+    @apply w-[380px] rounded-3xl border-black border-[1px] text-black m-[10px] text-base px-5 py-1 box-border focus:border-[3px]
 }
 
 .activeBtn{
-    padding: 5px 20px;
-    font-size: 20px;
-    background-color: #94A684;
-}
-
-.activeBtn:hover{
-    border-radius: 20px;
-    border: solid 4px black;
-    cursor: pointer;
+    @apply px-[20px] py-[5px] bg-[#94A684] hover:rounded-[30px] hover:border-black hover:border-[3px] hover:cursor-pointer text-[20px] duration-100
 }
 
 .activeBtn:active{
@@ -74,37 +39,32 @@ input[type=text]:focus{
 }
 
 .bg-form{
-    background-image: url('pagelogin.png');
-    background-position: left;
-    background-size: 490px;
-    background-repeat: no-repeat;
-    min-height: 500px;
-    position: relative;
-    max-width: 980px;
-    margin: auto;
-    border: solid 2px black;
-    
+    @apply bg-[url('pagelogin.png')] bg-left bg-[length_490px] bg-no-repeat min-h-[500px] relative max-w-[980px] m-auto border-black border-[2px]
 }
 
 .container{
-    background-color: white;
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 490px;
-    text-align: center;
+    @apply bg-white absolute right-0 h-full w-[490px] text-center
+}
+
+.container h1{
+    @apply font-bold text-[25px]
 }
 
 .container label{
-    font-weight: bold;
-    font-size: 20px;
-    width: 100px;
+    @apply font-bold text-[20px]
 }
 
-.container input[type=text], .container input[type=password], .container input[type=email]{
-    width: 200px;
+.textField{
+    @apply flex justify-evenly items-center
+}
+.textField label{
+    @apply w-[200px]
+}
+
+.textField input[type=text], .textField input[type=password], .textField input[type=email]{
+    @apply w-[200px]
 }
 
 .container .activeBtn{
-    width: 70%;
+    @apply m-[10px] w-[70%] text-[white]
 }
