@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav />
+    <Topnav :login-btn="true" :signup-btn="true" :logout-btn="false"/>
     <div class="homepage">
       <img src="customerhomepagepic.png" alt="homepage">
       <div class="topic">
@@ -12,7 +12,6 @@
         </form>
       </div>
     </div>
-    homepage
   </div>
 </template>
 

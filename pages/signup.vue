@@ -1,9 +1,8 @@
 <template>
   <div>
-    <Topnav />
+    <Topnav :login-btn="true" :signup-btn="true" :logout-btn="false"/>
     <div class="bg-form">
       <form action="" class="container">
-        <br>
         <br>
         <h1>Sign-Up</h1>
         <div class="textField">
@@ -36,7 +35,6 @@
       </form>
       
     </div>
-    signup page
   </div>
 </template>
 
