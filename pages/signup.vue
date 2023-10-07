@@ -9,7 +9,7 @@
         <label for="">Firstname</label>
         <input type="text"><br>
         <label for="">Lastname</label>
-        <input type="password" name="" id=""><br>
+        <input type="text" name="" id=""><br>
         <label for="">Username</label>
         <input type="text"><br>
         <label for="">Email</label>

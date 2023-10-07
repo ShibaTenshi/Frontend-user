@@ -49,8 +49,8 @@ input[type=text], input[type=password], input[type=email]{
     width: 380px;
     border-radius: 25px;
     margin: 10px;
-    font-size: 20px;
-    padding: 5px;
+    font-size: 16px;
+    padding: 5px 20px;
 }
 
 input[type=text]:focus{
@@ -103,7 +103,6 @@ input[type=text]:focus{
 
 .container input[type=text], .container input[type=password], .container input[type=email]{
     width: 200px;
-    padding: 0;
 }
 
 .container .activeBtn{
