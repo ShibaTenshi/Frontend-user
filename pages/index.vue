@@ -7,7 +7,7 @@
         <h1>Super app for queue</h1>
         <form action="">
           <label for="search">Search</label>
-          <input type="text"><br>
+          <input type="text" v-model="searchItem"><br>
           <button type="submit" class="activeBtn">Search</button>
         </form>
       </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-
+  const searchItem = ref("");
 </script>
 
 

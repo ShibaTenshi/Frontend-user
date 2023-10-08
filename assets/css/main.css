@@ -39,11 +39,11 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .bg-form{
-    @apply bg-[url('pagelogin.png')] bg-left bg-[length_490px] bg-no-repeat min-h-[500px] relative max-w-[980px] m-auto border-black border-[2px]
+    @apply bg-[url('pagelogin.png')] bg-left bg-[length_490px] bg-no-repeat min-h-[600px] relative max-w-full m-auto border-black border-[2px]
 }
 
 .container{
-    @apply bg-white absolute right-0 h-full w-[490px] text-center
+    @apply bg-white absolute right-0 h-full w-[50%] text-center
 }
 
 .container h1{

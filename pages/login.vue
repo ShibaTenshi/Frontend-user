@@ -2,16 +2,16 @@
   <div>
     <Topnav :login-btn="true" :signup-btn="true" :logout-btn="false"/>
     <div class="bg-form">
-      <form action="" class="container">
+      <form action="" class="container" @submit="">
         <br>
         <h1>Log-In</h1>
         <div class="textField">
           <label for="">Username</label>
-          <input type="text"><br>
+          <input type="text" v-model="usernameText"><br>
         </div>
         <div class="textField">
           <label for="">Password</label>
-          <input type="password" name="" id=""><br>
+          <input type="password" v-model="passwordText"><br>
         </div>
         <button type="submit" class="activeBtn">Login</button>
         <br><br><br>
@@ -23,7 +23,8 @@
 </template>
 
 <script lang="ts" setup>
-
+  const usernameText = ref("")
+  const passwordText = ref("")
 </script>
 
 
