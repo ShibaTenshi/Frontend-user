@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav :login-btn="true" :signup-btn="true" :logout-btn="false"/>
+    <Topnav :signup-btn="true"/>
     <div class="bg-form">
       <form action="" class="container" @submit="">
         <br>

@@ -7,11 +7,14 @@
 }
 
 .navLink{
-    @apply text-[25px] p-[10px] text-white float-left font-bold hover:bg-white hover:text-black
+    @apply text-[20px] p-[10px] text-white float-left font-bold hover:bg-white hover:text-black
 }
 
 .access{
-    @apply float-right
+    @apply text-[20px] float-right
+}
+.logo{
+    @apply text-[#FEFFD4]
 }
 
 .homepage{
@@ -19,7 +22,7 @@
 }
 
 .homepage .topic{
-    @apply absolute top-[50px] left-[50%] translate-x-[-50%] text-white text-center text-[30px]
+    @apply absolute top-[50%] left-[50%] translate-x-[-50%] text-white text-center text-[30px] font-bold translate-y-[-50%]
 }
 
 .topic label{

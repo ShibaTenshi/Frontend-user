@@ -5,7 +5,7 @@
       <img src="customerhomepagepic.png" alt="homepage">
       <div class="topic">
         <h1>Super app for queue</h1>
-        <form action="">
+        <form>
           <label for="search">Search</label>
           <input type="text" v-model="searchItem"><br>
           <button type="submit" class="activeBtn">Search</button>
