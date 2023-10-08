@@ -71,3 +71,23 @@ input[type=text], input[type=password], input[type=email]{
 .container .activeBtn{
     @apply m-[10px] w-[70%] text-[white]
 }
+
+.restaurantItem{
+    @apply bg-yellow-300 text-center
+}
+
+.restaurantItem h2{
+    @apply font-medium my-2
+}
+
+.restaurantItem p{
+    @apply h-[50px] w-[70%] border-black border-[2px] overflow-hidden m-auto my-2
+}
+
+.restaurantImage{
+    @apply border-[2px] border-black w-[50%] h-[200px] m-auto my-2
+}
+
+.detailBtn{
+    @apply border-black border-[2px] m-auto
+}

@@ -2,10 +2,10 @@
   <div class="restaurantItem">
     <h2>{{ restaurantTitle }}</h2>
     <div class="restaurantImage">
-      <img src="#" alt="" srcset="">
+      <img src="#" alt="restaurantImage" srcset="">
     </div>
     <p>{{ restaurantDetail }}</p>
-    <NuxtLink to="/" class="border-black border-[2px]">Detail</NuxtLink>
+    <NuxtLink to="/" class="detailBtn">Detail</NuxtLink>
   </div>
 </template>
 

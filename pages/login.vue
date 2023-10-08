@@ -2,7 +2,7 @@
   <div>
     <Topnav :signup-btn="true"/>
     <div class="bg-form">
-      <form action="" class="container" @submit="">
+      <form action="" class="container" @submit="requestLogin">
         <br>
         <h1>Log-In</h1>
         <div class="textField">
@@ -25,6 +25,24 @@
 <script lang="ts" setup>
   const usernameText = ref("")
   const passwordText = ref("")
+
+  const requestLogin = () => {
+    const {data: responseData, error} = useFetch("",{
+      method: 'post',
+      body:{
+        username: usernameText.value,
+        password: passwordText.value
+      }
+    })
+
+    if(error){
+      console.log(error.value);
+      
+    }else{
+      console.log(responseData);
+    }
+    
+  }
 </script>
 
 

@@ -57,7 +57,13 @@
       }
     })
 
-    console.log(responseData)
+    if(error){
+      console.error(error.value);
+      
+    }else{
+      console.log(responseData);
+      navigateTo({path:'/confirm'})
+    }
   }
 </script>
 
