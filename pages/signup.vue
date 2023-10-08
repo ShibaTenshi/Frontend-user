@@ -2,7 +2,7 @@
   <div>
     <Topnav :login-btn="true" />
     <div class="bg-form">
-      <form action="" class="container" @submit="requestSignUp">
+      <form action="" class="container" @submit.prevent="requestSignUp">
         <br>
         <h1>Sign-Up</h1>
         <div class="textField">
@@ -46,12 +46,7 @@
   const cpasswordText = ref("");
 
   const requestSignUp = () => {
-    if (firstnameText.value === "" || lastnameText.value === "" || usernameText.value === "" || emailText.value == "" || passwordText.value === "" || passwordText.value === cpasswordText.value){
-      const text = prompt("Hello")
-      
-    }else{
-      alert("Complete!!")
-    }
+    navigateTo({path: '/confirm', query: {email: emailText.value}})
   }
 </script>
 

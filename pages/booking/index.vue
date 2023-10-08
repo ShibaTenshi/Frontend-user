@@ -1,12 +1,7 @@
 <template>
     <div>
         <Topnav :bookingBtn="true" :logoutBtn="true"/>
-        <div class="homepage">
-          <img src="customerhomepagepic.png" alt="homepage">
-          <div class="topic">
-            Booking
-          </div>
-        </div>
+        <Homepage topicPage="Booking" />
     </div>
 </template>
 
