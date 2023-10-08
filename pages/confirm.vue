@@ -22,6 +22,7 @@
 
 <script lang="ts" setup>
   const pinText = ref("");
+  const email = ref("");
 </script>
 
 

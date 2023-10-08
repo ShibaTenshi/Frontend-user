@@ -46,7 +46,18 @@
   const cpasswordText = ref("");
 
   const requestSignUp = () => {
-    navigateTo({path: '/confirm', query: {email: emailText.value}})
+    const fullname = firstnameText.value + " " + lastnameText.value
+    const {data: responseData, error} = useFetch("",{
+      method: 'post',
+      body:{
+        fullname: fullname,
+        username: usernameText.value,
+        email: emailText.value,
+        password: passwordText.value
+      }
+    })
+
+    console.log(responseData)
   }
 </script>
 
