@@ -2,7 +2,7 @@
   <div>
     <Topnav :signup-btn="true"/>
     <div class="bg-form">
-      <form action="" class="container" @submit="requestLogin">
+      <form action="" class="container" @submit.prevent="requestLogin">
         <br>
         <h1>Log-In</h1>
         <div class="textField">
@@ -26,20 +26,18 @@
   const usernameText = ref("")
   const passwordText = ref("")
 
-  const requestLogin = () => {
-    const {data: responseData, error} = useFetch("",{
-      method: 'post',
-      body:{
-        username: usernameText.value,
-        password: passwordText.value
-      }
-    })
-
-    if(error){
-      console.log(error.value);
-      
-    }else{
-      console.log(responseData);
+  function requestLogin() {
+    // http://10.147.17.139:8080/login/customer
+    try{
+      const {data} = useFetch("http://10.147.17.139:8080/login/customer",{
+        method: 'post',
+        body:{
+          username: usernameText.value,
+          password: passwordText.value
+        }
+      })
+    }catch(error){
+      console.log(error)
     }
     
   }

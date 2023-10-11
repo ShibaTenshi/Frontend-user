@@ -9,8 +9,8 @@
     </Homepage>
   </div>
 
-  <div class="overflow-x-auto m-10">
-    <button v-for="item in restaurants" class="px-6 py-2 mx-5 bg-blue-500 border-[2px] border-black">{{ item.category }}</button>
+  <div class="overflow-y-auto m-10 h-20">
+    <button v-for="item in restaurants" class="px-6 py-2 mx-5 bg-blue-500 border-[2px] border-black hover:bg-white">{{ item.category }}</button>
   </div>
 
   <div class="grid grid-cols-3 gap-5 w-[90%] m-auto">

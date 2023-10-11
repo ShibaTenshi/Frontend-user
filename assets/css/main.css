@@ -46,7 +46,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .container{
-    @apply bg-white absolute right-0 h-full w-[50%] text-center
+    @apply bg-white absolute right-0 h-full w-[50%] text-center max-sm:w-full max-sm:left-0
 }
 
 .container h1{
@@ -54,18 +54,18 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .container label{
-    @apply font-bold text-[20px]
+    @apply font-medium
 }
 
 .textField{
     @apply flex justify-evenly items-center
 }
 .textField label{
-    @apply w-[200px]
+    @apply w-[200px] text-[18px]
 }
 
 .textField input[type=text], .textField input[type=password], .textField input[type=email]{
-    @apply w-[200px]
+    @apply w-[200px] text-[15px]
 }
 
 .container .activeBtn{

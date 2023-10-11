@@ -5,10 +5,10 @@
       <form action="" class="container" @submit="">
         <br>
         <h1>Confirm your email</h1>
-        <h2>Confirmation PIN sent to</h2>
+        <h2>Confirmation OTP sent to</h2>
         <p>{{ email }}</p>
         <div class="textField">
-          <label for="">PIN</label>
+          <label for="">OTP</label>
           <input type="text" v-model="pinText"><br>
         </div>
         <button type="submit" class="activeBtn">Confirm</button>
@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
   const pinText = ref("");
-  const email = ref("");
+  const email = useRoute().params.confirm;
 </script>
 
 
