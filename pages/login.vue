@@ -26,19 +26,36 @@
   const usernameText = ref("")
   const passwordText = ref("")
 
-  function requestLogin() {
+  async function requestLogin() {
     // http://10.147.17.139:8080/login/customer
     try{
-      const {data} = useFetch("http://10.147.17.139:8080/login/customer",{
+      const {data:token} = await useFetch("http://localhost:8080/login/customer",{
         method: 'post',
         body:{
           username: usernameText.value,
           password: passwordText.value
         }
       })
+
+      if(toRaw(token.value).status === "User not found") {
+        alert("User not found")
+        throw "User not found"
+      }
+      if(toRaw(token.value).status === "Password not correct") {
+        alert("Password incoorect")
+        throw "Password incorrect"
+      }
+      
+      const tokenToString = toRaw(token.value).status;
+      const tokenCookie = useCookie<string>('token')
+      tokenCookie.value = tokenToString;
+      navigateTo('/booking')
     }catch(error){
-      console.log(error)
+      console.error(error)
     }
+
+    // const token = await useCookie<string>('token')
+    // token.value = "---"
     
   }
 </script>

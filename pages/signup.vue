@@ -38,9 +38,6 @@
 </template>
 
 <script lang="ts" setup>
-import auth from '~/middleware/auth';
-import { useAuthStore } from '~/store/useAuthStore';
-
   const firstnameText = ref("");
   const lastnameText = ref("");
   const usernameText = ref("");
@@ -48,9 +45,12 @@ import { useAuthStore } from '~/store/useAuthStore';
   const passwordText = ref("");
   const cpasswordText = ref("");
 
+  const noticText = ref("");
+
   async function requestSignUp() {
     const fullname = `${firstnameText.value} ${lastnameText.value}`
-    const {data: responseData, error, status:success} = await useFetch("http://localhost:8080/register/customer",{
+    try{
+      const {data: responseData, error, status:success} = await useFetch("http://localhost:8080/register/customer",{
       method: 'post',
       body:{
         name: fullname,
@@ -60,12 +60,19 @@ import { useAuthStore } from '~/store/useAuthStore';
       }
     })
 
-    // console.log(success)
-    if(toRaw(responseData.value).status === "Customer Created"){
+    // check status to go to confirm page
+    if(toRaw(responseData.value).status === "OK"){
       navigateTo(`/confirm/${emailText.value}`)
-    }else{
-      console.log("Already")
+    }else {
+      throw toRaw(responseData.value).value
     }
+
+    }catch(error){
+      console.error(error)
+      alert(error)
+    }
+    
+
   }
 </script>
 

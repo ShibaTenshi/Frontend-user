@@ -2,9 +2,9 @@
   <div class="topnav">
     <NuxtLink to="/" class="navLink logo"><img src="/happy 2.svg" class="inline w-[25px]"> ShibaQueue</NuxtLink>
     <NuxtLink to="/booking" class="navLink" v-if="bookingBtn">Booking</NuxtLink>
-    <NuxtLink to="/login" class="navLink access" v-if="loginBtn">Login</NuxtLink>
+    <button class="navLink access" v-if="loginBtn" @click="enterLogin">Login</button>
     <NuxtLink to="/signup" class="navLink access" v-if="signupBtn">Signup</NuxtLink>
-    <NuxtLink to="/" class="navLink access" v-if="logoutBtn">Logout</NuxtLink>
+    <button type="button" class="navLink access" v-if="logoutBtn" @click="requestLogout">Logout</button>
   </div>
 </template>
 
@@ -15,6 +15,29 @@
     logoutBtn: Boolean,
     bookingBtn: Boolean
   })
+
+  async function requestLogout() {
+    try{
+      const cookie = useCookie<string>('token')
+      const {data} = await useFetch(`http://localhost:8080/logout/${cookie.value}`,{
+      method:'post'
+      })
+      cookie.value = ""
+      alert("You Log-out Complete!!")
+      navigateTo('/login')
+    }catch(error){
+      console.error(error)
+    }
+  }
+
+  function enterLogin(){
+    const cookie = useCookie('token')
+    if(!cookie.value){
+      navigateTo('/login')
+    }else{
+      navigateTo('/booking')
+    }
+  }
 </script>
 
 

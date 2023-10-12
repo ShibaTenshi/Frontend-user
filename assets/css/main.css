@@ -91,3 +91,15 @@ input[type=text], input[type=password], input[type=email]{
 .detailBtn{
     @apply border-black border-[2px] m-auto
 }
+/* 
+.noticePopup{
+    @apply w-80 h-80 border-[5px] border-red-400 fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]
+}
+
+.noticePopup button{
+    @apply absolute right-0 bg-black px-4 py-2
+}
+
+.noticeError{
+    @apply bg-red-500 text-white text-center
+} */
