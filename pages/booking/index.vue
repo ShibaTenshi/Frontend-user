@@ -2,11 +2,19 @@
     <div>
         <Topnav :bookingBtn="true" :logoutBtn="true"/>
         <Homepage topicPage="Booking" />
+
+        <img src="" alt="" class="w-full h-full">
     </div>
 </template>
 
 <script lang="ts" setup>
     // const {data: booking_res} = useFetch("");
+
+
+    const {data:checkToken} = await useFetch("",{
+        
+    })
+
     definePageMeta({
         middleware : ['auth']
     })

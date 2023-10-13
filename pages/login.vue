@@ -29,7 +29,8 @@
   async function requestLogin() {
     // http://10.147.17.139:8080/login/customer
     try{
-      const {data:token} = await useFetch("http://localhost:8080/login/customer",{
+      console.log("start...")
+      const {data:token} = await useFetch("http://10.147.17.139:5041/auth/login/customer",{
         method: 'post',
         body:{
           username: usernameText.value,
@@ -37,21 +38,25 @@
         }
       })
 
-      if(toRaw(token.value).status === "User not found") {
-        alert("User not found")
-        throw "User not found"
-      }
-      if(toRaw(token.value).status === "Password not correct") {
-        alert("Password incoorect")
-        throw "Password incorrect"
+    //  if(toRaw(token.value).status === "User not found") {
+    //     alert("User not found")
+    //     throw "User not found"
+    //   }
+    //   if(toRaw(token.value).status === "Password not correct") {
+    //     alert("Password incoorect")
+    //     throw "Password incorrect"
+    //   }
+      let check = String(token.value)
+      if(check.slice(0,6) === "Error:"){
+        throw check
       }
       
-      const tokenToString = toRaw(token.value).status;
       const tokenCookie = useCookie<string>('token')
-      tokenCookie.value = tokenToString;
+      tokenCookie.value = check;
       navigateTo('/booking')
     }catch(error){
       console.error(error)
+      alert(error)
     }
 
     // const token = await useCookie<string>('token')

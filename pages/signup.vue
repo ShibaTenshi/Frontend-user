@@ -6,12 +6,8 @@
         <br>
         <h1>Sign-Up</h1>
         <div class="textField">
-          <label for="">Firstname</label>
-          <input type="text" v-model="firstnameText">
-        </div>
-        <div class="textField">
-          <label for="">Lastname</label>
-          <input type="text" v-model="lastnameText">
+          <label for="">Fullname</label>
+          <input type="text" v-model="fullnameText">
         </div>
         <div class="textField">
           <label for="">Username</label>
@@ -38,8 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-  const firstnameText = ref("");
-  const lastnameText = ref("");
+  const fullnameText = ref("");
   const usernameText = ref("");
   const emailText = ref("");
   const passwordText = ref("");
@@ -48,23 +43,29 @@
   const noticText = ref("");
 
   async function requestSignUp() {
-    const fullname = `${firstnameText.value} ${lastnameText.value}`
     try{
-      const {data: responseData, error, status:success} = await useFetch("http://localhost:8080/register/customer",{
+      const {data: responseData, error, status:success} = await useFetch("http://10.147.17.139:5041/register/customer",{
       method: 'post',
       body:{
-        name: fullname,
+        name: fullnameText.value,
         username: usernameText.value,
         email: emailText.value,
         password: passwordText.value
       }
     })
 
-    // check status to go to confirm page
-    if(toRaw(responseData.value).status === "OK"){
-      navigateTo(`/confirm/${emailText.value}`)
+    // // check status to go to confirm page
+    let check = String(responseData.value)
+    console.log(check)
+
+
+
+    if(check.slice(0, 6) === "Error:"){
+      throw responseData.value
     }else {
-      throw toRaw(responseData.value).value
+      const refernece = useCookie<string>('reference-otp')
+      refernece.value = String(responseData.value)
+      navigateTo(`/confirm/${emailText.value}`)
     }
 
     }catch(error){

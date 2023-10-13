@@ -4,7 +4,9 @@
     <NuxtLink to="/booking" class="navLink" v-if="bookingBtn">Booking</NuxtLink>
     <button class="navLink access" v-if="loginBtn" @click="enterLogin">Login</button>
     <NuxtLink to="/signup" class="navLink access" v-if="signupBtn">Signup</NuxtLink>
-    <button type="button" class="navLink access" v-if="logoutBtn" @click="requestLogout">Logout</button>
+    <button type="button" class="navLink access" v-if="logoutBtn" @click="requestLogout">
+      Logout
+    </button>
   </div>
 </template>
 
@@ -19,8 +21,9 @@
   async function requestLogout() {
     try{
       const cookie = useCookie<string>('token')
-      const {data} = await useFetch(`http://localhost:8080/logout/${cookie.value}`,{
-      method:'post'
+      const {data} = await useFetch(`http://10.147.17.139:5041/auth/logout`,{
+      method:'post',
+      query: {token: cookie.value}
       })
       cookie.value = ""
       alert("You Log-out Complete!!")
