@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav :login-btn="true" :signup-btn="true" :booking-btn="true"/>
+    <Topnav :booking-btn="true"/>
     <Homepage topicPage="Super app for queue"><form>
           <label for="search">Search</label>
           <input type="text" v-model="searchItem"><br>

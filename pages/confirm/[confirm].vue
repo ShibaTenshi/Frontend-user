@@ -21,6 +21,11 @@
 </template>
 
 <script lang="ts" setup>
+
+definePageMeta({
+  middleware: ['before-confirm']
+})
+
   const pinText = ref("");
   const email = useRoute().params.confirm;
 

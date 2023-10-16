@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Topnav :bookingBtn="true" :logoutBtn="true"/>
+        <Topnav :bookingBtn="true" />
         <Homepage topicPage="Booking" />
 
         <img src="" alt="" class="w-full h-full">

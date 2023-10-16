@@ -4,6 +4,7 @@
     <Homepage topicPage="RestaurantDetail" />
     <div class="restaurantHeader">
       <h1>RestaurantName</h1>
+      <img src="" alt="">
     </div>
   </div>
 </template>

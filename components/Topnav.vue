@@ -11,13 +11,17 @@
 </template>
 
 <script lang="ts" setup>
+
+
   defineProps({
     signupBtn: Boolean,
-    loginBtn: Boolean,
-    logoutBtn: Boolean,
     bookingBtn: Boolean
   })
 
+  const loginBtn = ref<Boolean>(false)
+  const logoutBtn = ref<Boolean>(false)
+  const cookie = useCookie('token')
+  
   async function requestLogout() {
     try{
       const cookie = useCookie<string>('token')
@@ -34,12 +38,20 @@
   }
 
   function enterLogin(){
-    const cookie = useCookie('token')
     if(!cookie.value){
       navigateTo('/login')
     }else{
       navigateTo('/booking')
     }
+  }
+
+
+  if(!cookie.value){
+    loginBtn.value = true
+    logoutBtn.value = false
+  }else{
+    loginBtn.value = false
+    logoutBtn.value = true
   }
 </script>
 

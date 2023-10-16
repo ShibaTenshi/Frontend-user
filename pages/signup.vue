@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav :login-btn="true" />
+    <Topnav />
     <div class="bg-form">
       <form action="" class="container" @submit.prevent="requestSignUp">
         <br>
