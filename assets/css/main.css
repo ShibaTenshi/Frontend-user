@@ -91,6 +91,15 @@ input[type=text], input[type=password], input[type=email]{
 .detailBtn{
     @apply border-black border-[2px] m-auto
 }
+
+.restaurantHeader{
+    @apply bg-slate-300
+}
+
+.restaurantHeader h1{
+    @apply font-bold p-4 text-2xl
+}
+
 /* 
 .noticePopup{
     @apply w-80 h-80 border-[5px] border-red-400 fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]

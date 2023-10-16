@@ -11,10 +11,6 @@
     // const {data: booking_res} = useFetch("");
 
 
-    const {data:checkToken} = await useFetch("",{
-        
-    })
-
     definePageMeta({
         middleware : ['auth']
     })

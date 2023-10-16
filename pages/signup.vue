@@ -44,6 +44,13 @@
 
   async function requestSignUp() {
     try{
+      if(passwordText.value === "" || cpasswordText.value === ""){
+        throw "Both password is empty."
+      }else if(passwordText.value !== cpasswordText.value){
+        throw "Password and Cofirm Password are not the same."
+      }
+
+
       const {data: responseData, error, status:success} = await useFetch("http://10.147.17.139:5041/register/customer",{
       method: 'post',
       body:{
@@ -54,14 +61,16 @@
       }
     })
 
-    // // check status to go to confirm page
+    // check status to go to confirm page
     let check = String(responseData.value)
     console.log(check)
 
 
 
-    if(check.slice(0, 6) === "Error:"){
+    if(check.slice(0, 6) === "Error:" || error){
       throw responseData.value
+    }else if(check == null){
+      throw "Can't request signup" // since server isn't opened.
     }else {
       const refernece = useCookie<string>('reference-otp')
       refernece.value = String(responseData.value)
