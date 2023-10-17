@@ -45,6 +45,7 @@ definePageMeta({
         throw responseData.value
       }else{
         alert("SuccessFul")
+        navigateTo('\login')
       }
     }catch(error){
       console.error(error)

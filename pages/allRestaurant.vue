@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav :booking-btn="true" :signup-btn="true"/>
+    <Topnav :booking-btn="true"/>
     <Homepage topicPage="Super app for queue"><form>
           <label for="search">Search</label>
           <input type="text" v-model="searchItem"><br>
@@ -36,6 +36,10 @@
     category: "India",
     detail: "Lorem ipsum dolor sit amet consectetur. Et blandit venenatis nisi iaculis sollicitudin faucibus ut."
   }])
+
+  definePageMeta({
+    middleware: ['auth']
+  })
 </script>
 
 

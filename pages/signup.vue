@@ -63,11 +63,9 @@
 
     // check status to go to confirm page
     let check = String(responseData.value)
-    console.log(check)
 
 
-
-    if(check.slice(0, 6) === "Error:" || error){
+    if(check.slice(0, 6) === "Error:"){
       throw responseData.value
     }else if(check == null){
       throw "Can't request signup" // since server isn't opened.

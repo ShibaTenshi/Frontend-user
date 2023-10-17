@@ -15,7 +15,7 @@
         </div>
         <button type="submit" class="activeBtn">Login</button>
         <br><br><br>
-        <p>If you don't have your account, Please click <NuxtLink to="/signup" class="underline text-blue-500">Sign-Up</NuxtLink></p>
+        <p>If you don't have your account, Please click <NuxtLink to="/signup" class="underline text-blue-500">SignUp</NuxtLink></p>
       </form>
       
     </div>
@@ -53,7 +53,7 @@
       
       const tokenCookie = useCookie<string>('token')
       tokenCookie.value = check;
-      navigateTo('/booking')
+      navigateTo('/allRestaurant');
     }catch(error){
       console.error(error)
       alert(error)
