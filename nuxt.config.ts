@@ -9,5 +9,11 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@pinia/nuxt']
+  modules: ['@pinia/nuxt'],
+
+  app:{
+    head: {
+      link:[{rel: 'icon', type: 'image/png', href: 'logoUser.png'}]
+    }
+  }
 })
