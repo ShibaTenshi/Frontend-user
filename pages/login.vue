@@ -30,6 +30,9 @@
     // http://10.147.17.139:8080/login/customer
     try{
       console.log("start...")
+      if(usernameText.value === "" || passwordText.value === ""){
+        throw "Text Field is empty."
+      }
       const {data:token} = await useFetch("http://10.147.17.139:5041/auth/login/customer",{
         method: 'post',
         body:{
