@@ -7,11 +7,11 @@
         <h1>Log-In</h1>
         <div class="textField">
           <label for="">Username</label>
-          <input type="text" v-model="usernameText"><br>
+          <input type="text" v-model="usernameText" placeholder="username"><br>
         </div>
         <div class="textField">
           <label for="">Password</label>
-          <input type="password" v-model="passwordText"><br>
+          <input type="password" v-model="passwordText" placeholder="****"><br>
         </div>
         <button type="submit" class="activeBtn">Login</button>
         <br><br><br>

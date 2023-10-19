@@ -2,13 +2,13 @@
   <div class="topnav">
     <NuxtLink to="/" class="navLink logo"><img src="/logoUser.png" class="inline w-[25px]"> ShibaQueue</NuxtLink>
     <NuxtLink to="/booking" class="navLink" v-if="logoutBtn">Booking</NuxtLink>
-    <button class="navLink access" v-if="loginBtn" @click="enterLogin">LogIn</button>
+    <NuxtLink to="login" class="navLink access" v-if="loginBtn">LogIn</NuxtLink>
     <NuxtLink to="/signup" class="navLink access" v-if="loginBtn">SignUp</NuxtLink>
     <button type="button" class="navLink access" v-if="logoutBtn" @click="requestLogout">
       Logout
     </button>
 
-    <button type="button" class="navLink access" v-if="logoutBtn">{{ "Hello world" }}</button>
+    <NuxtLink to="/profile.vue" class="navLink access" v-if="logoutBtn">{{ "Hello world" }}</NuxtLink>
   </div>
 </template>
 
@@ -30,14 +30,6 @@
       navigateTo('/login')
     }catch(error){
       console.error(error)
-    }
-  }
-
-  function enterLogin(){
-    if(!cookie.value){
-      navigateTo('/login')
-    }else{
-      navigateTo('/allRestaurant')
     }
   }
 

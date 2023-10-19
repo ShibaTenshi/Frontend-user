@@ -7,23 +7,23 @@
         <h1>Sign-Up</h1>
         <div class="textField">
           <label for="">Fullname</label>
-          <input type="text" v-model="fullnameText">
+          <input type="text" v-model="fullnameText" placeholder="Firstname Lastname">
         </div>
         <div class="textField">
           <label for="">Username</label>
-          <input type="text" v-model="usernameText">
+          <input type="text" v-model="usernameText" placeholder="username">
         </div>
         <div class="textField">
           <label for="">Email</label>
-          <input type="email" v-model="emailText">
+          <input type="email" v-model="emailText" placeholder="you@example.com">
         </div>
         <div class="textField">
           <label for="">Password</label>
-          <input type="password" v-model="passwordText">
+          <input type="password" v-model="passwordText" placeholder="****">
         </div>
         <div class="textField">
           <label for="">Confirm Password</label>
-          <input type="password" v-model="cpasswordText">
+          <input type="password" v-model="cpasswordText" placeholder="****">
         </div>
         <button type="submit" class="activeBtn">Sign-Up</button>
         <br>

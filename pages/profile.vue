@@ -11,10 +11,10 @@
         <label>Upload Your Image File : </label>
         <button type="button" class="activeBtn">choose file</button>
       </div>
-      <button type="button" class="activeBtn cp">Change Password</button>
+      <button type="button" class="activeBtn cp" @click="popUpCP">Change Password</button>
     </div>
 
-    <div class="profile">
+    <div class="profile" v-if="changePassword">
       <h1 class="text-center py-5">Change Password</h1>
       <form @submit.prevent="">
         <div class="textField">
@@ -44,13 +44,23 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  middleware : ['auth']
-})
+// definePageMeta({
+//   middleware : ['auth']
+// })
 
 const opassword = ref("")
 const npassword = ref("")
 const cpassword = ref("")
+
+const changePassword = ref(false)
+
+const popUpCP = () =>{
+  if(changePassword.value == false){
+    changePassword.value = true
+  }else{
+    changePassword.value = false
+  }
+}
 
 const file = ref<File | null>(null);
 const onChanageFile = (event: Event) =>{

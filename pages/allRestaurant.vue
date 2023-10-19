@@ -3,7 +3,7 @@
     <Topnav :booking-btn="true"/>
     <Homepage topicPage="Super app for queue"><form>
           <label for="search">Search</label>
-          <input type="text" v-model="searchItem"><br>
+          <input type="text" v-model="searchItem" placeholder="Restaurant's Name"><br>
           <button type="submit" class="activeBtn">Search</button>
         </form>
     </Homepage>

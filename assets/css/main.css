@@ -34,11 +34,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .activeBtn{
-    @apply px-[20px] py-[5px] bg-[#94A684] hover:rounded-[30px] hover:border-black hover:border-[3px] hover:cursor-pointer text-[20px] duration-100
-}
-
-.activeBtn:active{
-    transform: translateY(5%);
+    @apply px-[20px] py-[5px] bg-[#94A684] hover:rounded-[30px] hover:border-black hover:border-[3px] hover:cursor-pointer text-[20px] duration-100 active:translate-y-2
 }
 
 .bg-form{
@@ -65,7 +61,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .textField input[type=text], .textField input[type=password], .textField input[type=email]{
-    @apply w-[200px] text-[15px]
+    @apply w-[200px] text-[15px] 
 }
 
 .container .activeBtn{
