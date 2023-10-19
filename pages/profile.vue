@@ -16,6 +16,8 @@
 
     <div class="profile" v-if="changePassword">
       <h1 class="text-center py-5">Change Password</h1>
+      <br>
+      <br>
       <form @submit.prevent="">
         <div class="textField">
           <label for="">Original Password</label>
@@ -44,9 +46,9 @@
 </template>
 
 <script lang="ts" setup>
-// definePageMeta({
-//   middleware : ['auth']
-// })
+definePageMeta({
+  middleware : ['auth']
+})
 
 const opassword = ref("")
 const npassword = ref("")

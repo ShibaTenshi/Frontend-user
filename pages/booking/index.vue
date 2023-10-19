@@ -3,7 +3,9 @@
         <Topnav :bookingBtn="true" />
         <Homepage topicPage="Booking" />
 
-        <img src="" alt="" class="w-full h-full">
+        <BookingItem />
+        <BookingItem />
+
     </div>
 </template>
 
@@ -11,9 +13,9 @@
     // const {data: booking_res} = useFetch("");
 
 
-    definePageMeta({
-        middleware : ['auth']
-    })
+    // definePageMeta({
+    //     middleware : ['auth']
+    // })
 </script>
 
 <style scoped>

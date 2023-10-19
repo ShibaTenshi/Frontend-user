@@ -124,3 +124,17 @@ input[type=text], input[type=password], input[type=email]{
 .cp{
     @apply absolute right-1/2 translate-x-1/2 my-5
 }
+
+.cancelBtn{
+    @apply bg-white border-red-500 border-[5px] px-4 py-2 transition duration-100 hover:bg-red-500 hover:rounded-full active:translate-y-2 hover:border-black font-bold
+}
+
+.imageBooking{
+    @apply w-36 h-36 border-2 border-black flex-none mr-3
+}
+.detailBooking{
+    @apply flex-auto border-black border-2 relative
+}
+.detailBooking .cancelBtn{
+    @apply absolute right-5
+}
