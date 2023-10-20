@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="homepage">
-      <img src="/customerhomepagepic.png" alt="homepage" class="h-[300px]">
+      <img src="/customerhomepagepic.png" alt="homepage" class="h-[300px] w-full">
       <div class="topic">
         <h1>{{ topicPage }}</h1>
         <slot />

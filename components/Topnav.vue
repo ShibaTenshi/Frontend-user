@@ -1,6 +1,6 @@
 <template>
   <div class="topnav">
-    <NuxtLink to="/" class="navLink logo"><img src="/logoUser.png" class="inline w-[25px]"> ShibaQueue</NuxtLink>
+    <NuxtLink to="/" class="navLink logo"><img src="/logoUser.png" class="inline w-[25px] mb-1"> ShibaQueue</NuxtLink>
     <NuxtLink to="/booking" class="navLink" v-if="logoutBtn">Booking</NuxtLink>
     <NuxtLink to="login" class="navLink access" v-if="loginBtn">LogIn</NuxtLink>
     <NuxtLink to="/signup" class="navLink access" v-if="loginBtn">SignUp</NuxtLink>

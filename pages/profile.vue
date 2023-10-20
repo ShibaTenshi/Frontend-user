@@ -3,7 +3,7 @@
     <Topnav :booking-btn="true"/>
     <Homepage topic-page="My Profile"/>
     <div class="profile">
-      <img :src="null || 'logoUser.png'" alt="profile" class="imageProfile">
+      <img :src="imageFile" alt="profile" class="imageProfile">
       <div class="detailProfile">
         <label>Fullname :    {{  }}</label><br>
         <label>Username :    {{  }}</label><br>
@@ -39,16 +39,14 @@
 
     <label>Upload File</label>
     <input type="file" @change="onChanageFile">
-    <p>{{ file?.name }}</p>
-
-    <button @click="onSumbit"></button>
+    <button @click="onSumbit" class="border-black border-2 px-5 py-2">Upload</button>
   </div>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  middleware : ['auth']
-})
+// definePageMeta({
+//   middleware : ['auth']
+// })
 
 const opassword = ref("")
 const npassword = ref("")
@@ -56,6 +54,22 @@ const cpassword = ref("")
 
 const changePassword = ref(false)
 
+const {data} = await useFetch("http://10.147.17.253:5034/customer/image/profile/siwakorn",{
+  method:'get'
+})
+
+console.log(toRaw(data.value))
+
+const imageFile = ref<String>("")
+
+if(data.value === "/default.png"){
+  // imageFile.value = `https://content-shibaqueue.doksakura.com/${data.value}`
+  imageFile.value = "logoUser.png"
+}else{
+  imageFile.value = `https://content-shibaqueue.doksakura.com/customer/siwakorn/${data.value}`
+}
+
+// https://content-shibaqueue.doksakura.com/customer/siwakorn/${data.value}
 const popUpCP = () =>{
   if(changePassword.value == false){
     changePassword.value = true
@@ -64,6 +78,7 @@ const popUpCP = () =>{
   }
 }
 
+// choose image file in Desktop
 const file = ref<File | null>(null);
 const onChanageFile = (event: Event) =>{
   const [_file] = (event.target as HTMLInputElement).files as FileList;
@@ -71,13 +86,28 @@ const onChanageFile = (event: Event) =>{
   file.value = _file
 };
 
+// submit image file
 const onSumbit = async () =>{
-  const {data} = await useFetch("",{
-    method: 'post',
-    body:{
+  try{
+    if(!file.value) throw "Don't have image file";
 
-    }
-  });
+    await $fetch('http://10.147.17.253:5034/remove/customer/siwakorn',{
+      method: 'delete'
+    })
+
+    const body = new FormData();
+    body.append('file', file.value, file.value.name)
+
+    // 10.147.17.253:5034/customer/image/profile/username
+    await $fetch('http://10.147.17.253:5034/customer/image/profile/siwakorn',{
+      method: 'post',
+      body
+    })
+
+    alert('Uploaded')
+  }catch(error){
+    console.log(error)
+  }
 }
 </script>
 
