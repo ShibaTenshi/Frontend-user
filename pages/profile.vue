@@ -38,15 +38,15 @@
     </div>
 
     <label>Upload File</label>
-    <input type="file" @change="onChanageFile">
+    <input type="file" @change="onChangeFile">
     <button @click="onSumbit" class="border-black border-2 px-5 py-2">Upload</button>
   </div>
 </template>
 
 <script lang="ts" setup>
-// definePageMeta({
-//   middleware : ['auth']
-// })
+definePageMeta({
+  middleware : ['auth']
+})
 
 const opassword = ref("")
 const npassword = ref("")
@@ -80,7 +80,7 @@ const popUpCP = () =>{
 
 // choose image file in Desktop
 const file = ref<File | null>(null);
-const onChanageFile = (event: Event) =>{
+const onChangeFile = (event: Event) =>{
   const [_file] = (event.target as HTMLInputElement).files as FileList;
 
   file.value = _file

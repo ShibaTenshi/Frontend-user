@@ -54,7 +54,7 @@
         throw check
       }
       
-      const tokenCookie = useCookie<string>('token')
+      const tokenCookie = useCookie<string>('token', {maxAge: 60*60})
       tokenCookie.value = check;
       navigateTo('/allRestaurant');
     }catch(error){
