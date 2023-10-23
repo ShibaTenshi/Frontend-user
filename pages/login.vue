@@ -20,20 +20,23 @@
       
     </div>
   </div>
+  <Loading :show-loading="showLoading" />
 </template>
 
 <script lang="ts" setup>
   const usernameText = ref("")
   const passwordText = ref("")
+  const showLoading = ref(false)
 
   async function requestLogin() {
     // http://10.147.17.139:8080/login/customer
+    showLoading.value = true
     try{
       console.log("start...")
       if(usernameText.value === "" || passwordText.value === ""){
         throw "Text Field is empty."
       }
-      const {data:token} = await useFetch("http://10.147.17.139:5041/auth/login/customer",{
+      const {data:token, error} = await useFetch("http://10.147.17.139:5041/auth/login/customer",{
         method: 'post',
         body:{
           username: usernameText.value,
@@ -49,6 +52,10 @@
     //     alert("Password incoorect")
     //     throw "Password incorrect"
     //   }
+
+      if(error){
+        throw error.value
+      }
       let check = String(token.value)
       if(check.slice(0,6) === "Error:"){
         throw check
@@ -61,6 +68,7 @@
       console.error(error)
       alert(error)
     }
+    showLoading.value = false
 
     // const token = await useCookie<string>('token')
     // token.value = "---"

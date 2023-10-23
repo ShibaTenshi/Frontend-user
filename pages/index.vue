@@ -16,10 +16,13 @@
   <div class="grid grid-cols-3 gap-5 w-[90%] m-auto">
     <RestaurantItem :restaurant-title="item.name" :restaurant-detail="item.detail" v-for="item in restaurants"/>
   </div>
+
+  <Loading :show-loading="showLoading"/>
 </template>
 
 <script lang="ts" setup>
   const searchItem = ref("");
+  const showLoading = ref(false)
 
   const restaurants = ref([{
     name: "TitleRestaurantThai",

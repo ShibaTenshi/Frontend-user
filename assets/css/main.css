@@ -138,3 +138,11 @@ input[type=text], input[type=password], input[type=email]{
 .detailBooking .cancelBtn{
     @apply absolute right-5
 }
+
+.loadingBg{
+    @apply fixed top-0 left-0 w-full h-full bg-gray-500/75 flex justify-center items-center
+}
+
+.loadingImg{
+    @apply w-32 h-32 border-gray-700 rounded-full border-[20px] border-t-[20px] border-t-green-500 animate-spin
+}

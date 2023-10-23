@@ -2,7 +2,7 @@
   <div>
     <Topnav />
     <div class="bg-form">
-      <form class="container" @submit.prevent="acceptSignUP">
+      <form class="container" @submit="acceptSignUP">
         <br>
         <h1>Confirm your email</h1>
         <h2>Confirmation OTP sent to</h2>
@@ -18,6 +18,7 @@
       
     </div>
   </div>
+  <Loading :show-loading="showLoading" />
 </template>
 
 <script lang="ts" setup>
@@ -28,9 +29,10 @@ definePageMeta({
 
   const pinText = ref("");
   const email = useRoute().params.confirm;
+  const showLoading = ref(false)
 
   async function acceptSignUP() {
-
+    showLoading.value = true
     try{
       const refernece = useCookie<string>('reference-otp')
       const {data: responseData, error, status:success} = await useFetch("http://10.147.17.139:5041/otp",{
@@ -51,6 +53,8 @@ definePageMeta({
       console.error(error)
       alert(error)
     }
+
+    showLoading.value = false
   }
 
   async function resendOTP(){

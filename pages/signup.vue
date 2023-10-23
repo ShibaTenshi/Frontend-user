@@ -31,6 +31,7 @@
       </form>
     </div>
   </div>
+  <Loading :show-loading="showLoading" />
 </template>
 
 <script lang="ts" setup>
@@ -42,7 +43,10 @@
 
   const noticText = ref("");
 
+  const showLoading = ref(false)
+
   async function requestSignUp() {
+    showLoading.value = true
     try{
       if(passwordText.value === "" || cpasswordText.value === ""){
         throw "Both password is empty."
@@ -79,7 +83,7 @@
       console.error(error)
       alert(error)
     }
-    
+    showLoading.value = false
 
   }
 </script>
