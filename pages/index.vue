@@ -17,7 +17,7 @@
     <RestaurantItem :restaurant-title="item.name" :restaurant-detail="item.detail" v-for="item in restaurants"/>
   </div>
 
-  <Loading :show-loading="showLoading"/>
+  <Loading v-if="showLoading"/>
 </template>
 
 <script lang="ts" setup>
