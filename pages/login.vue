@@ -25,6 +25,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useUserStore } from '~/store/useUserStore';
 
   const usernameText = ref("")
   const passwordText = ref("")
@@ -65,7 +66,12 @@ import { ref } from 'vue';
       
       const tokenCookie = useCookie<string>('token', {maxAge: 60*60})
       tokenCookie.value = check;
-      
+
+      const userStore = useUserStore();
+
+      // get user
+      // ....
+
       navigateTo('/allRestaurant');
     }catch(error){
       console.error(error)

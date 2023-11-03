@@ -88,12 +88,12 @@ input[type=text], input[type=password], input[type=email]{
     @apply border-black border-[2px] m-auto
 }
 
-.restaurantHeader{
-    @apply bg-slate-300
+.restaurantDetail{
+    @apply bg-slate-300 max-w-2xl m-auto
 }
 
-.restaurantHeader h1{
-    @apply font-bold p-4 text-2xl
+.restaurantDetail h1{
+    @apply font-bold p-4 text-2xl text-center
 }
 
 /* 

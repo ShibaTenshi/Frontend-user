@@ -13,10 +13,5 @@ export const useUserStore = defineStore('user', ()=>{
         user.value.email = email;
     }
 
-    function clearUser(){
-        user.value.fullname = "";
-        user.value.username = "";
-    }
-
-    return {user}
+    return {user, changeUser}
 })

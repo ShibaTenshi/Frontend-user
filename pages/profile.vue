@@ -10,9 +10,9 @@
         <button @click="onSumbit" class="border-black border-2 px-2 text-lg bg-[#94A684] hover:rounded-full" v-if="changeImage">Upload Image</button>
       </div>
       <div class="detailProfile">
-        <label>Fullname :    {{  }}</label><br>
-        <label>Username :    {{  }}</label><br>
-        <label>Email :       {{  }}</label><br>
+        <label>Fullname :    {{ userStore.user.fullname }}</label><br>
+        <label>Username :    {{ userStore.user.username }}</label><br>
+        <label>Email :       {{ userStore.user.email }}</label><br>
       </div>
       <div class="cp">
         <button type="button" class="activeBtn" @click="popUpCP">Change Password</button>
@@ -49,9 +49,11 @@
 </template>
 
 <script lang="ts" setup>
-// definePageMeta({
-//   middleware : ['auth']
-// })
+import { useUserStore } from '~/store/useUserStore';
+
+definePageMeta({
+  middleware : ['auth']
+})
 
 const opassword = ref("")
 const npassword = ref("")
@@ -60,22 +62,26 @@ const cpassword = ref("")
 const changePassword = ref(false)
 const changeImage = ref(false)
 
-const {data} = await useFetch("http://10.147.17.253:5034/customer/image/profile/siwakorn",{
+const userStore = useUserStore();
+
+const {data} = await useFetch(`http://10.147.17.253:5034/customer/image/profile/${userStore.user.username}`,{
   method:'get'
 })
 
 console.log(toRaw(data.value))
 
+const pictureText = String(toRaw(data.value))
+
 const imageFile = ref<String>("")
 
-if(data.value === "/default.png"){
+if(pictureText.includes("/img/default.png")){
   // imageFile.value = `https://content-shibaqueue.doksakura.com/${data.value}`
   imageFile.value = "logoUser.png"
 }else{
-  imageFile.value = `https://content-shibaqueue.doksakura.com/customer/siwakorn/${data.value}`
+  imageFile.value = `https://content-shibaqueue.doksakura.com/${data.value}`
 }
 
-// https://content-shibaqueue.doksakura.com/customer/siwakorn/${data.value}
+// https://content-shibaqueue.doksakura.com/customer/${userStore.user.username}/${data.value}
 const popUpCP = () =>{
   if(changePassword.value == false){
     changePassword.value = true
@@ -99,7 +105,7 @@ const onSumbit = async () =>{
   try{
     if(!file.value) throw "Don't have image file";
 
-    await $fetch('http://10.147.17.253:5034/remove/customer/siwakorn',{
+    await $fetch(`http://10.147.17.253:5034/remove/customer/${userStore.user.username}`,{
       method: 'delete'
     })
 
@@ -107,7 +113,7 @@ const onSumbit = async () =>{
     body.append('file', file.value, file.value.name)
 
     // 10.147.17.253:5034/customer/image/profile/username
-    await $fetch('http://10.147.17.253:5034/customer/image/profile/siwakorn',{
+    await $fetch(`http://10.147.17.253:5034/customer/image/profile/${userStore.user.username}`,{
       method: 'post',
       body
     })
@@ -116,6 +122,10 @@ const onSumbit = async () =>{
   }catch(error){
     console.log(error)
   }
+
+  const {data} = await useFetch(`http://10.147.17.253:5034/customer/image/profile/${userStore.user.username}`,{
+    method:'get'
+  })
 
   changeImage.value = false;
 }

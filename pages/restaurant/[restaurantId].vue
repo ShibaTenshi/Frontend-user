@@ -2,7 +2,7 @@
   <div>
     <Topnav :logoutBtn="true"/>
     <Homepage topicPage="RestaurantDetail" />
-    <div class="restaurantHeader">
+    <div class="restaurantDetail">
       <h1>RestaurantName</h1>
       <img src="" alt="">
     </div>
@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  middleware : ['auth']
-})
+// definePageMeta({
+//   middleware : ['auth']
+// })
 </script>
 
 
