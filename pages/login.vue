@@ -65,6 +65,7 @@ import { ref } from 'vue';
       
       const tokenCookie = useCookie<string>('token', {maxAge: 60*60})
       tokenCookie.value = check;
+      
       navigateTo('/allRestaurant');
     }catch(error){
       console.error(error)

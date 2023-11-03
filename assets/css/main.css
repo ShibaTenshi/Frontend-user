@@ -81,7 +81,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .restaurantImage{
-    @apply border-[2px] border-black w-[50%] h-[200px] m-auto my-2
+    @apply border-[2px] border-black w-[200px] h-[200px] m-auto my-2
 }
 
 .detailBtn{
@@ -110,7 +110,7 @@ input[type=text], input[type=password], input[type=email]{
 } */
 
 .profile{
-    @apply w-[600px] bg-[#E7E7E7] m-auto font-bold text-2xl h-[550px] my-5 relative
+    @apply w-[600px] bg-[#E7E7E7] m-auto font-bold text-2xl my-5
 }
 
 .imageProfile{
@@ -118,11 +118,14 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .detailProfile{
-    @apply bg-white w-[500px] m-auto h-[150px]
+    @apply bg-white w-[500px] m-auto my-5
+}
+.detailProfile label, .detailProfile input{
+    @apply p-3
 }
 
 .cp{
-    @apply absolute right-1/2 translate-x-1/2 my-5
+    @apply text-center p-3
 }
 
 .cancelBtn{

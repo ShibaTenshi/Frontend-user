@@ -31,7 +31,7 @@
       </form>
     </div>
   </div>
-  <Loading :show-loading="showLoading" />
+  <Loading v-if="showLoading" />
 </template>
 
 <script lang="ts" setup>

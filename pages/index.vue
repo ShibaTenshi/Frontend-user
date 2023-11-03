@@ -13,7 +13,7 @@
     <button v-for="item in restaurants" class="snap-center px-6 py-2 mx-5 bg-blue-500 border-[2px] border-black hover:bg-white">{{ item.category }}</button>
   </div>
 
-  <div class="grid grid-cols-3 gap-5 w-[90%] m-auto">
+  <div class="grid grid-cols-1 gap-5 m-auto w-[400px] md:grid-cols-3 md:w-[900px]">
     <RestaurantItem :restaurant-title="item.name" :restaurant-detail="item.detail" v-for="item in restaurants"/>
   </div>
 

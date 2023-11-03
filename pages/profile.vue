@@ -3,20 +3,24 @@
     <Topnav :booking-btn="true"/>
     <Homepage topic-page="My Profile"/>
     <div class="profile">
+      <br>
       <img :src="imageFile" alt="profile" class="imageProfile">
+      <div class="text-center my-5">
+        <input type="file" class="text-lg font-normal w-[250px]" @change="onChangeFile"/>
+        <button @click="onSumbit" class="border-black border-2 px-2 text-lg bg-[#94A684] hover:rounded-full" v-if="changeImage">Upload Image</button>
+      </div>
       <div class="detailProfile">
         <label>Fullname :    {{  }}</label><br>
         <label>Username :    {{  }}</label><br>
         <label>Email :       {{  }}</label><br>
-        <label>Upload Your Image File : </label>
-        <button type="button" class="activeBtn">choose file</button>
       </div>
-      <button type="button" class="activeBtn cp" @click="popUpCP">Change Password</button>
+      <div class="cp">
+        <button type="button" class="activeBtn" @click="popUpCP">Change Password</button>
+      </div>
     </div>
 
     <div class="profile" v-if="changePassword">
-      <h1 class="text-center py-5">Change Password</h1>
-      <br>
+      <h1 class="text-center pt-6">Change Password</h1>
       <br>
       <form @submit.prevent="">
         <div class="textField">
@@ -31,28 +35,30 @@
           <label for="">Confirm Password</label>
           <input type="password" v-model="cpassword"><br>
         </div>
-
-        <button type="submit" class="activeBtn cp">Accept</button>
+        <div class="cp">
+          <button type="submit" class="activeBtn">Accept</button>
+        </div>
       </form>
       
     </div>
 
-    <label>Upload File</label>
-    <input type="file" @change="onChangeFile">
-    <button @click="onSumbit" class="border-black border-2 px-5 py-2">Upload</button>
+    <!-- <label>Upload File</label> -->
+    <!-- <input type="file" @change="onChangeFile">
+    <button @click="onSumbit" class="border-black border-2 px-5 py-2">Upload</button> -->
   </div>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  middleware : ['auth']
-})
+// definePageMeta({
+//   middleware : ['auth']
+// })
 
 const opassword = ref("")
 const npassword = ref("")
 const cpassword = ref("")
 
 const changePassword = ref(false)
+const changeImage = ref(false)
 
 const {data} = await useFetch("http://10.147.17.253:5034/customer/image/profile/siwakorn",{
   method:'get'
@@ -84,6 +90,8 @@ const onChangeFile = (event: Event) =>{
   const [_file] = (event.target as HTMLInputElement).files as FileList;
 
   file.value = _file
+
+  changeImage.value = true;
 };
 
 // submit image file
@@ -108,6 +116,8 @@ const onSumbit = async () =>{
   }catch(error){
     console.log(error)
   }
+
+  changeImage.value = false;
 }
 </script>
 
