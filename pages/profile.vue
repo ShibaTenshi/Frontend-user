@@ -51,9 +51,9 @@
 <script lang="ts" setup>
 import { useUserStore } from '~/store/useUserStore';
 
-definePageMeta({
-  middleware : ['auth']
-})
+// definePageMeta({
+//   middleware : ['auth']
+// })
 
 const opassword = ref("")
 const npassword = ref("")
