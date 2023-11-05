@@ -27,6 +27,9 @@
 import { ref } from 'vue';
 import { useUserStore } from '~/store/useUserStore';
 
+useHead({
+  title: "LoginCustomer"
+})
   const usernameText = ref("")
   const passwordText = ref("")
   const showLoading = ref(false);
@@ -66,8 +69,6 @@ import { useUserStore } from '~/store/useUserStore';
       
       const tokenCookie = useCookie<string>('token', {maxAge: 60*60})
       tokenCookie.value = check;
-
-      const userStore = useUserStore();
 
       // get user
       // ....

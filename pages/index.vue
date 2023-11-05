@@ -4,7 +4,7 @@
     <Homepage topicPage="Super app for queue"><form>
           <label for="search">Search</label>
           <input type="text" v-model="searchItem" placeholder="Restaurant's Name"><br>
-          <button type="submit" class="activeBtn">Search</button>
+          <button class="activeBtn" @click="findRestaurantName">Search</button>
         </form>
     </Homepage>
   </div>
@@ -21,6 +21,10 @@
 </template>
 
 <script lang="ts" setup>
+
+useHead({
+  title: "Homepage"
+})
   const searchItem = ref("");
   const showLoading = ref(false)
 
@@ -39,6 +43,11 @@
     category: "India",
     detail: "Lorem ipsum dolor sit amet consectetur. Et blandit venenatis nisi iaculis sollicitudin faucibus ut."
   }])
+
+  const findRestaurantName = async () =>{
+    const {data:restaurant} = await useFetch("",{
+    });
+  }
 </script>
 
 

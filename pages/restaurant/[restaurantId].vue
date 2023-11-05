@@ -29,6 +29,11 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae libero mollitia aliquid cumque at, consequatur culpa eum minima illum ipsam!
       </div>
 
+      <div class="pt-2 text-center">
+        <p class="font-bold text-xl py-2">Open Date Time</p>
+
+      </div>
+
       <div class="cp">
         <button class="activeBtn" @click="bookingPopUp">Booking Form</button>
       </div>
@@ -37,6 +42,9 @@
   <br>
   <div class="restaurantDetail" v-if="showBooking">
     <h1>Booking Restaurant</h1>
+    <div class="m-auto">
+      <input type="datetime-local" v-model="chooseTime">
+    </div>
     <div class="flex py-4 justify-between">
       <img src="/tableIcon.png" alt="" class="mx-5">
       <div class="py-8 border-2 border-black grow">
@@ -75,6 +83,7 @@
 const showBooking = ref(false)
 const numberOfNormal = ref(0);
 const numberOfBig = ref(0)
+const chooseTime = ref("");
 
 const bookingPopUp = () =>{
   showBooking.value = !showBooking.value
@@ -84,11 +93,14 @@ const submitBookingForm = () =>{
   if(numberOfNormal.value < 0 || numberOfBig.value < 0){
     alert("number of tables can't be less than 0");
   }else{
+    const date = new Date(chooseTime.value)
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const dateTh = date.getDate();
+    const time = `${date.getHours()}:${date.getMinutes()}`
     alert("OK")
   }
 }
-
-
 </script>
 
 

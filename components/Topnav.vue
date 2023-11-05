@@ -4,6 +4,8 @@
     <NuxtLink to="/booking" class="navLink" v-if="logoutBtn">Booking</NuxtLink>
     <NuxtLink to="login" class="navLink access" v-if="loginBtn">LogIn</NuxtLink>
     <NuxtLink to="/signup" class="navLink access" v-if="loginBtn">SignUp</NuxtLink>
+    <NuxtLink to="/profile" class="navLink access" v-if="logoutBtn"><img src="/logoUser.png" class="inline w-[25px] mb-1">Hello world</NuxtLink>
+    <NuxtLink to="/historyBooking" class="navLink" v-if="logoutBtn">History</NuxtLink>
     <button type="button" class="navLink access" v-if="logoutBtn" @click="requestLogout">
       Logout
     </button>

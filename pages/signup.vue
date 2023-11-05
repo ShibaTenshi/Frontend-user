@@ -35,6 +35,10 @@
 </template>
 
 <script lang="ts" setup>
+
+useHead({
+  title: "SignUpCustomer"
+})
   const fullnameText = ref("");
   const usernameText = ref("");
   const emailText = ref("");

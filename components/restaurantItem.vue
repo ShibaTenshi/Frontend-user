@@ -5,7 +5,7 @@
       <img src="#" alt="restaurantImage" srcset="">
     </div>
     <p>{{ restaurantDetail }}</p>
-    <NuxtLink to="/" class="detailBtn">Detail</NuxtLink>
+    <NuxtLink :to="`/restaurant/${restaurantId}`" class="detailBtn">Detail</NuxtLink>
   </div>
 </template>
 
@@ -13,7 +13,8 @@
   const props = defineProps({
     restaurantTitle: String,
     restaurantImage: String,
-    restaurantDetail: String
+    restaurantDetail: String,
+    restaurantId: String
   })
 </script>
 
