@@ -42,8 +42,8 @@
   <br>
   <div class="restaurantDetail" v-if="showBooking">
     <h1>Booking Restaurant</h1>
-    <div class="m-auto">
-      <input type="datetime-local" v-model="chooseTime">
+    <div class="w-[500px] m-auto">
+      <input type="datetime-local" v-model="chooseTime" class="text-center w-[500px] text-xl border-black p-2">
     </div>
     <div class="flex py-4 justify-between">
       <img src="/tableIcon.png" alt="" class="mx-5">
@@ -79,6 +79,9 @@
 // definePageMeta({
 //   middleware : ['auth']
 // })
+useHead({
+  title: "Restaurant"
+})
 
 const showBooking = ref(false)
 const numberOfNormal = ref(0);

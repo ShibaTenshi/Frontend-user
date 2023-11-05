@@ -19,6 +19,9 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: "Homepage"
+})
   const searchItem = ref("");
 
   const restaurants = ref([{

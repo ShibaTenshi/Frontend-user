@@ -16,6 +16,10 @@
     // definePageMeta({
     //     middleware : ['auth']
     // })
+
+    useHead({
+        title: "Booking List"
+    })
 </script>
 
 <style scoped>

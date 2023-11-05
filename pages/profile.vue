@@ -55,6 +55,10 @@ definePageMeta({
   middleware : ['auth']
 })
 
+useHead({
+  title: "Profile"
+})
+
 const opassword = ref("")
 const npassword = ref("")
 const cpassword = ref("")

@@ -27,6 +27,10 @@ definePageMeta({
   middleware: ['before-confirm']
 })
 
+useHead({
+  title: "Confirm Register"
+})
+
   const pinText = ref("");
   const email = useRoute().params.confirm;
   const showLoading = ref(false)
