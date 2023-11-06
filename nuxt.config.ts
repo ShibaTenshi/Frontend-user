@@ -18,5 +18,12 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1'
     }
+  },
+
+  runtimeConfig: {
+    public: {
+      STORAGE_URL: "https://content-shibaqueue.doksakura.com/",
+      API_URL: "https://api-shibaqueue.doksakura.com/"
+    },
   }
 })

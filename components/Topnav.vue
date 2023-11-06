@@ -4,22 +4,37 @@
     <NuxtLink to="/booking" class="navLink" v-if="logoutBtn">Booking</NuxtLink>
     <NuxtLink to="login" class="navLink access" v-if="loginBtn">LogIn</NuxtLink>
     <NuxtLink to="/signup" class="navLink access" v-if="loginBtn">SignUp</NuxtLink>
-    <NuxtLink to="/profile" class="navLink access" v-if="logoutBtn"><img src="/logoUser.png" class="inline w-[25px] mb-1">Hello world</NuxtLink>
     <NuxtLink to="/historyBooking" class="navLink" v-if="logoutBtn">History</NuxtLink>
     <button type="button" class="navLink access" v-if="logoutBtn" @click="requestLogout">
       Logout
     </button>
-
-    <NuxtLink to="/profile.vue" class="navLink access" v-if="logoutBtn">{{ "Hello world" }}</NuxtLink>
+    <NuxtLink to="/profile" class="navLink access" v-if="logoutBtn">
+      <!-- <img src="/logoUser.png" class="inline w-[25px] mb-1"> -->
+      {{ getUser.username }}
+    </NuxtLink>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { useUserStore } from '~/store/useUserStore';
 
-  const loginBtn = ref<Boolean>(false)
-  const logoutBtn = ref<Boolean>(false)
+const runtime = useRuntimeConfig();
+
+defineProps({
+  loginBtn: Boolean,
+  logoutBtn: Boolean
+})
   const cookie = useCookie('token')
   
+  
+  const {data:user} = await useFetch(runtime.public.API_URL + "customer/profile",{
+    query:{
+      tokenId: cookie.value
+    }
+  })
+
+  const getUser = ref(toRaw(user.value))
+
   async function requestLogout() {
     try{
       const cookie = useCookie<string>('token')
@@ -33,15 +48,6 @@
     }catch(error){
       console.error(error)
     }
-  }
-
-
-  if(!cookie.value){
-    loginBtn.value = true
-    logoutBtn.value = false
-  }else{
-    loginBtn.value = false
-    logoutBtn.value = true
   }
 </script>
 

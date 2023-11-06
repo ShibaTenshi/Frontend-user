@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Topnav :bookingBtn="true" />
+        <Topnav :logout-btn="true" />
         <Homepage topicPage="Booking" />
 
         <BookingItem />

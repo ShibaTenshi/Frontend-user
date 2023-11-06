@@ -3,35 +3,54 @@
     <Topnav :logoutBtn="true"/>
     <Homepage topicPage="RestaurantDetail" />
     <div class="restaurantDetail">
-      <h1>RestaurantName</h1>
+      <h1>{{ restaurant.restaurantName }}</h1>
 
-      <!-- put image resaturant -->
-      <div class="flex">
-        <div class="w-[250px] h-[250px] border-black border-2">
-          <img src="" alt="">
-          sdfasf
+      <!-- put image resaturant logo -->
+      <div class="pt-2">
+        <div class="w-[250px] h-[250px] border-black border-2 m-auto">
+          <img :src="restaurant.logoImage" alt="">
         </div>
+      </div>
 
-        <div class="h-[250px] border-black border-2 grow">
-          <img src="" alt="">
+      <div class="pt-2">
+        <p class="text-center font-bold text-xl py-2">Environment</p>
+        <div class="w-[100%] h-[250px] border-black border-2 grid grid-cols-5 overflow-y-scroll">
+          <img :src="image" alt="" class="w-[150px]" v-for="image in restaurant.envImages">
         </div>
       </div>
     
-
+      <!-- put image menu -->
       <div class="pt-2">
         <p class="text-center font-bold text-xl py-2">Menu</p>
         <div class="w-[100%] h-[250px] border-black border-2 grid grid-cols-5 overflow-y-scroll">
-          <img src="" alt="" class="w-[250px]">
+          <img :src="image" alt="" class="w-[150px]" v-for="image in restaurant.menuImages">
         </div>
       </div>
 
       <div class="w-3/4 m-auto py-2">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae libero mollitia aliquid cumque at, consequatur culpa eum minima illum ipsam!
+        <h1>Detail</h1>
+        {{ restaurant.description }}
+      </div>
+
+      <div class="w-3/4 m-auto py-2 text-center">
+        <h1>Catgeory</h1>
+        <p class="text-xl">{{ restaurant.category }}</p>
       </div>
 
       <div class="pt-2 text-center">
         <p class="font-bold text-xl py-2">Open Date Time</p>
-
+        <div class="flex justify-center">
+        <p class="p-1" v-bind:style="restaurant.openDate[0] == 1 ? 'color: black' : 'color: gray'">Sunday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[1] == 1 ? 'color: black' : 'color: gray'">Monday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[2] == 1 ? 'color: black' : 'color: gray'">Tuesday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[3] == 1 ? 'color: black' : 'color: gray'">Wednesday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[4] == 1 ? 'color: black' : 'color: gray'">Thursday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[5] == 1 ? 'color: black' : 'color: gray'">Friday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[6] == 1 ? 'color: black' : 'color: gray'">Saturday</p>
+        </div>
+        <p class="font-bold text-sm py-2">{{ restaurant.openTime }} - {{ restaurant.closeTime }}</p>
+        <p class="font-bold text-xl py-2">Location</p>
+        <p>{{ restaurant.location }}</p>
       </div>
 
       <div class="cp">
@@ -76,33 +95,47 @@
 </template>
 
 <script lang="ts" setup>
-// definePageMeta({
-//   middleware : ['auth']
-// })
+definePageMeta({
+  middleware : ['auth']
+})
+
+const route = useRoute().params.restaurantId
+const runtime = useRuntimeConfig();
+console.log(route);
+
 useHead({
   title: "Restaurant"
 })
 
 const showBooking = ref(false)
-const numberOfNormal = ref(0);
-const numberOfBig = ref(0)
+
+const numberofSeat = ref([])
 const chooseTime = ref("");
+
+const {data} = await useFetch(runtime.public.API_URL + "content/viewRestaurant",{
+  query:{
+    name: route
+  }
+})
+
+const restaurant = ref(toRaw(data.value))
+
 
 const bookingPopUp = () =>{
   showBooking.value = !showBooking.value
 }
 
 const submitBookingForm = () =>{
-  if(numberOfNormal.value < 0 || numberOfBig.value < 0){
-    alert("number of tables can't be less than 0");
-  }else{
-    const date = new Date(chooseTime.value)
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const dateTh = date.getDate();
-    const time = `${date.getHours()}:${date.getMinutes()}`
-    alert("OK")
-  }
+  // if(numberOfNormal.value < 0 || numberOfBig.value < 0){
+  //   alert("number of tables can't be less than 0");
+  // }else{
+  //   const date = new Date(chooseTime.value)
+  //   const year = date.getFullYear();
+  //   const month = date.getMonth() + 1;
+  //   const dateTh = date.getDate();
+  //   const time = `${date.getHours()}:${date.getMinutes()}`
+  //   alert("OK")
+  // }
 }
 </script>
 

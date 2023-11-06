@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav :booking-btn="true"/>
+    <Topnav :logout-btn="true"/>
     <Homepage topic-page="My Profile"/>
     <div class="profile">
       <br>
@@ -10,9 +10,9 @@
         <button @click="onSumbit" class="border-black border-2 px-2 text-lg bg-[#94A684] hover:rounded-full" v-if="changeImage">Upload Image</button>
       </div>
       <div class="detailProfile">
-        <label>Fullname :    {{ userStore.user.fullname }}</label><br>
-        <label>Username :    {{ userStore.user.username }}</label><br>
-        <label>Email :       {{ userStore.user.email }}</label><br>
+        <label>Fullname :    <span class="font-normal text-xl">{{ getUser.name }}</span></label><br>
+        <label>Username :    <span class="font-normal text-xl">{{ getUser.username }}</span></label><br>
+        <label>Email :       <span class="font-normal text-xl">{{ getUser.email }}</span></label><br>
       </div>
       <div class="cp">
         <button type="button" class="activeBtn" @click="popUpCP">Change Password</button>
@@ -36,7 +36,7 @@
           <input type="password" v-model="cpassword"><br>
         </div>
         <div class="cp">
-          <button type="submit" class="activeBtn">Accept</button>
+          <button type="submit" class="activeBtn" @click="changePasswordHandler">Accept</button>
         </div>
       </form>
       
@@ -49,7 +49,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '~/store/useUserStore';
 
 definePageMeta({
   middleware : ['auth']
@@ -66,24 +65,29 @@ const cpassword = ref("")
 const changePassword = ref(false)
 const changeImage = ref(false)
 
-const userStore = useUserStore();
+const runtime = useRuntimeConfig();
 
-const {data} = await useFetch(`http://10.147.17.253:5034/customer/image/profile/${userStore.user.username}`,{
+const cookie = useCookie("token")
+const {data:user} = await useFetch(runtime.public.API_URL + "customer/profile",{
+    query:{
+      tokenId: cookie.value
+    }
+  })
+
+const getUser = ref(toRaw(user.value))
+console.log(getUser.value.username)
+
+const {data} = await useFetch(`${runtime.public.STORAGE_URL}customer/image/profile/${getUser.value.username}`,{
   method:'get'
 })
 
 console.log(toRaw(data.value))
 
-const pictureText = String(toRaw(data.value))
+const pictureText = ref(toRaw(data.value))
 
-const imageFile = ref<String>("")
 
-if(pictureText.includes("/img/default.png")){
-  // imageFile.value = `https://content-shibaqueue.doksakura.com/${data.value}`
-  imageFile.value = "logoUser.png"
-}else{
-  imageFile.value = `https://content-shibaqueue.doksakura.com/${data.value}`
-}
+const imageFile = ref<String>(runtime.public.STORAGE_URL + pictureText.value)
+console.log(imageFile.value)
 
 // https://content-shibaqueue.doksakura.com/customer/${userStore.user.username}/${data.value}
 const popUpCP = () =>{
@@ -109,15 +113,15 @@ const onSumbit = async () =>{
   try{
     if(!file.value) throw "Don't have image file";
 
-    await $fetch(`http://10.147.17.253:5034/remove/customer/${userStore.user.username}`,{
-      method: 'delete'
-    })
+    // await $fetch(`${runtime.public.STORAGE_URL}remove/customer/${userStore.user.username}`,{
+    //   method: 'delete'
+    // })
 
     const body = new FormData();
     body.append('file', file.value, file.value.name)
 
     // 10.147.17.253:5034/customer/image/profile/username
-    await $fetch(`http://10.147.17.253:5034/customer/image/profile/${userStore.user.username}`,{
+    await $fetch(`${runtime.public.STORAGE_URL}customer/image/profile/${getUser.value.username}`,{
       method: 'post',
       body
     })
@@ -127,11 +131,32 @@ const onSumbit = async () =>{
     console.log(error)
   }
 
-  const {data} = await useFetch(`http://10.147.17.253:5034/customer/image/profile/${userStore.user.username}`,{
+  const {data} = await useFetch(`${runtime.public.STORAGE_URL}/customer/image/profile/${userStore.user.username}`,{
     method:'get'
   })
 
+  imageFile.value = runtime.public.STORAGE_URL + toRaw(data.value)
+
   changeImage.value = false;
+}
+
+const changePasswordHandler = async () =>{
+  //....
+  console.log("start change....")
+  const {data, error} = await useFetch(`${runtime.public.API_URL}customer/profile/changePassword`,{
+    query:{
+      tokenId: cookie.value,
+      oldPassword: opassword,
+      newPassword: npassword
+    },
+    method: 'post'
+  })
+
+  console.log(error.value)
+
+  if(error.value == null){
+    alert("successful")
+  }
 }
 </script>
 

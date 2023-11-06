@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav />
+    <Topnav :logout-btn="true"/>
     <div class="bg-form">
       <form class="container" @submit="acceptSignUP">
         <br>
@@ -18,7 +18,7 @@
       
     </div>
   </div>
-  <Loading :show-loading="showLoading" />
+  <!-- <Loading :show-loading="showLoading" /> -->
 </template>
 
 <script lang="ts" setup>
@@ -51,7 +51,7 @@ useHead({
         throw responseData.value
       }else{
         alert("SuccessFul")
-        navigateTo('\login')
+        navigateTo('/login')
       }
     }catch(error){
       console.error(error)

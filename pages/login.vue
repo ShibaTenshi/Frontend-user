@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Topnav :signup-btn="true"/>
+    <Topnav :login-btn="true"/>
     <div class="bg-form">
       <form action="" class="container" @submit.prevent="requestLogin">
         <br>
@@ -27,6 +27,8 @@
 import { ref } from 'vue';
 import { useUserStore } from '~/store/useUserStore';
 
+const runtime = useRuntimeConfig();
+
 useHead({
   title: "LoginCustomer"
 })
@@ -42,7 +44,7 @@ useHead({
       if(usernameText.value === "" || passwordText.value === ""){
         throw "Text Field is empty."
       }
-      const {data:token, error} = await useFetch("http://10.147.17.139:5041/auth/login/customer",{
+      const {data:token, error} = await useFetch(`${runtime.public.API_URL}auth/login/customer`,{
         method: 'post',
         body:{
           username: usernameText.value,
@@ -59,7 +61,7 @@ useHead({
     //     throw "Password incorrect"
     //   }
 
-      if(error){
+      if(error.value != null){
         throw error.value
       }
       let check = String(token.value)
@@ -71,7 +73,14 @@ useHead({
       tokenCookie.value = check;
 
       // get user
-      // ....
+      const {data:user} = await useFetch(runtime.public.API_URL + "customer/profile",{
+        query: {
+          tokenId: tokenCookie.value
+        }
+      })
+
+      const getUser = ref(toRaw(user.value));
+      console.log(getUser)
 
       navigateTo('/allRestaurant');
     }catch(error){
