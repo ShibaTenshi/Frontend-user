@@ -81,7 +81,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .restaurantImage{
-    @apply w-[200px] h-[200px] m-auto my-5
+    @apply w-[200px] h-[200px] m-auto my-5 overflow-hidden
 }
 
 .detailBtn{

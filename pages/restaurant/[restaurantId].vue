@@ -7,7 +7,7 @@
 
       <!-- put image resaturant logo -->
       <div class="pt-2">
-        <div class="w-[250px] h-[250px] m-auto">
+        <div class="w-[250px] h-[250px] m-auto overflow-hidden">
           <img :src="restaurant.logoImage" alt="">
         </div>
       </div>
@@ -15,7 +15,7 @@
       <div class="pt-2">
         <p class="text-center font-bold text-xl py-2">Environment</p>
         <div class="w-[100%] h-[250px] border-black border-2 grid grid-cols-5 overflow-y-scroll">
-          <img :src="image" alt="" class="w-[150px]" v-for="image in restaurant.envImages">
+          <img :src="image" alt="" class="w-[150px] h-[150px]" v-for="image in restaurant.envImages">
         </div>
       </div>
     
@@ -23,7 +23,7 @@
       <div class="pt-2">
         <p class="text-center font-bold text-xl py-2">Menu</p>
         <div class="w-[100%] h-[250px] border-black border-2 grid grid-cols-5 overflow-y-scroll">
-          <img :src="image" alt="" class="w-[150px]" v-for="image in restaurant.menuImages">
+          <img :src="image" alt="" class="w-[150px] h-[150px]" v-for="image in restaurant.menuImages">
         </div>
       </div>
 
