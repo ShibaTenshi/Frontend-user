@@ -7,6 +7,6 @@ export default defineNuxtRouteMiddleware(async (to,from)=>{
 
   const check = String(toRaw(data.value))
   if(check.slice(0,6) === "Error:" || !token.value){
-    return navigateTo("/")
+    return navigateTo("/login")
   }
 })
