@@ -40,13 +40,13 @@
       <div class="pt-2 text-center">
         <p class="font-bold text-xl py-2">Open Date Time</p>
         <div class="flex justify-center">
-        <p class="p-1" v-bind:style="restaurant.openDate[0] == 1 ? 'color: black' : 'color: gray'">Sunday</p>
-        <p class="p-1" v-bind:style="restaurant.openDate[1] == 1 ? 'color: black' : 'color: gray'">Monday</p>
-        <p class="p-1" v-bind:style="restaurant.openDate[2] == 1 ? 'color: black' : 'color: gray'">Tuesday</p>
-        <p class="p-1" v-bind:style="restaurant.openDate[3] == 1 ? 'color: black' : 'color: gray'">Wednesday</p>
-        <p class="p-1" v-bind:style="restaurant.openDate[4] == 1 ? 'color: black' : 'color: gray'">Thursday</p>
-        <p class="p-1" v-bind:style="restaurant.openDate[5] == 1 ? 'color: black' : 'color: gray'">Friday</p>
-        <p class="p-1" v-bind:style="restaurant.openDate[6] == 1 ? 'color: black' : 'color: gray'">Saturday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[0] == 1 ? 'color: black; font-weight: bold' : 'color: gray'">Sunday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[1] == 1 ? 'color: black; font-weight: bold' : 'color: gray'">Monday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[2] == 1 ? 'color: black; font-weight: bold' : 'color: gray'">Tuesday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[3] == 1 ? 'color: black; font-weight: bold' : 'color: gray'">Wednesday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[4] == 1 ? 'color: black; font-weight: bold' : 'color: gray'">Thursday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[5] == 1 ? 'color: black; font-weight: bold' : 'color: gray'">Friday</p>
+        <p class="p-1" v-bind:style="restaurant.openDate[6] == 1 ? 'color: black; font-weight: bold' : 'color: gray'">Saturday</p>
         </div>
         <p class="font-bold text-sm py-2">{{ restaurant.openTime }} - {{ restaurant.closeTime }}</p>
         <p class="font-bold text-xl py-2">Location</p>

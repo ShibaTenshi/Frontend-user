@@ -75,7 +75,7 @@ useHead({
         throw check
       }
       
-      const tokenCookie = useCookie<string>('token', {maxAge: 60*60})
+      const tokenCookie = useCookie<string>('token')
       tokenCookie.value = check;
 
       // get user

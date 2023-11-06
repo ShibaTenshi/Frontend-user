@@ -136,7 +136,7 @@ input[type=text], input[type=password], input[type=email]{
     @apply w-36 h-36 border-2 border-black flex-none mr-3
 }
 .detailBooking{
-    @apply flex-auto border-black border-2 relative
+    @apply flex-auto relative
 }
 .detailBooking .cancelBtn{
     @apply absolute right-5 bottom-2

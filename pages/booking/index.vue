@@ -54,7 +54,7 @@
             }
         })
 
-        navigateTo("/booking")
+        location.reload()
     }
 
     const clickCancel = () =>{

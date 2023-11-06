@@ -168,6 +168,7 @@ const changePasswordHandler = async () =>{
 
   if(error.value == null){
     alert("successful")
+    location.reload()
   }
 }
 
