@@ -1,4 +1,20 @@
-# Nuxt 3 Minimal Starter
+# Frontend of Customer
+จัดทำโดย นายศิวกร ภาสว่าง 6410451423 (200)
+## เกี่ยวกับ
+Shibaqueue Web เป็นหน้า web page สำหรับผู้ใช้งานทั่วไปให้สามารถดูร้านอาหาร ผู้ใช้สามารถจองร้านอาหารที่ผู้ใช้ต้องการไว้ล่วงหน้า เพื่อความสะดวกในการเข้าร้าน นอกจากนั้นสามารดูประวัติการจองร้านร้านเพื่อจะจองร้านอาหารอีกครั้ง
+## การติดตั้ง
+1. git clone https://github.com/ShibaTenshi/Frontend-user.git
+2. cd Frontend-user
+3. npm install
+
+## การ Run Web development server
+1. npm run dev
+2. Go to  `http://localhost:3000`
+## การ build web page
+1. npm run bulid
+2. node .output/server/index.mjs
+
+<!-- # Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
@@ -72,4 +88,4 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information. -->
