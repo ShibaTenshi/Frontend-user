@@ -47,7 +47,6 @@ useHead({
 
 const {data:categories} = await useFetch(runtime.public.API_URL + "content/category")
 const getCategory = ref(toRaw(categories.value))
-console.log(toRaw(categories.value))
 
 const filterCategory = async (category: String) =>{
   const{data:restaurants} = await useFetch(runtime.public.API_URL + "content/restaurantPage/category",{
