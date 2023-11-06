@@ -44,6 +44,7 @@ useHead({
   const emailText = ref("");
   const passwordText = ref("");
   const cpasswordText = ref("");
+  const runtime = useRuntimeConfig();
 
   const noticText = ref("");
 
@@ -59,7 +60,7 @@ useHead({
       }
 
 
-      const {data: responseData, error, status:success} = await useFetch("http://10.147.17.139:5041/register/customer",{
+      const {data: responseData} = await useFetch(runtime.public.API_URL + "register/customer",{
       method: 'post',
       body:{
         name: fullnameText.value,

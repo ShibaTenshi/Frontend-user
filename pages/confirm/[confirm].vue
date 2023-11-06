@@ -36,12 +36,13 @@ useHead({
   const email = useRoute().params.confirm;
   const showLoading = ref(false)
   let refernece = useCookie<string>('reference-otp')
+  const runtime = useRuntimeConfig()
 
   async function acceptSignUP() {
     showLoading.value = true
     try{
       const refernece = useCookie<string>('reference-otp')
-      const {data: responseData, error, status:success} = await useFetch("http://10.147.17.139:5041/otp",{
+      const {data: responseData, error, status:success} = await useFetch(`${runtime.public.API_URL}otp`,{
         method: 'post',
         query: {refer: refernece.value, otpNumber: pinText.value}
       })
