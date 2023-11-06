@@ -45,11 +45,9 @@ useHead({
   })
 
   const getRestaurant = ref(toRaw(restaurants.value));
-  console.log(getRestaurant)
 
 const {data:categories} = await useFetch(runtime.public.API_URL + "content/category")
 const getCategory = ref(toRaw(categories.value))
-console.log(toRaw(categories.value))
 
 const filterCategory = async (category: String) =>{
   const{data:restaurants} = await useFetch(runtime.public.API_URL + "content/restaurantPage/category",{
@@ -61,7 +59,6 @@ const filterCategory = async (category: String) =>{
   })
 
   getRestaurant.value = toRaw(restaurants.value)
-  console.log(getRestaurant);
 }
 
 const nextPage = async () =>{
@@ -75,7 +72,6 @@ const nextPage = async () =>{
   })
 
   getRestaurant.value = toRaw(restaurants.value);
-  console.log(getRestaurant)
 }
 
 const prevPage = async () =>{

@@ -141,8 +141,10 @@ const onSumbit = async () =>{
 }
 
 const changePasswordHandler = async () =>{
-  //....
-  console.log("start change....")
+  if(npassword.value !== cpassword.value || npassword.value === ""){
+    alert("New Password Incorrect");
+    return
+  }
   const {data, error} = await useFetch(`${runtime.public.API_URL}customer/profile/changePassword`,{
     query:{
       tokenId: cookie.value,
@@ -151,8 +153,6 @@ const changePasswordHandler = async () =>{
     },
     method: 'post'
   })
-
-  console.log(error.value)
 
   if(error.value == null){
     alert("successful")

@@ -139,7 +139,7 @@ input[type=text], input[type=password], input[type=email]{
     @apply flex-auto border-black border-2 relative
 }
 .detailBooking .cancelBtn{
-    @apply absolute right-5
+    @apply absolute right-5 bottom-2
 }
 
 .loadingBg{

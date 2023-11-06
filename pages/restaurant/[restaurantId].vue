@@ -7,7 +7,7 @@
 
       <!-- put image resaturant logo -->
       <div class="pt-2">
-        <div class="w-[250px] h-[250px] border-black border-2 m-auto">
+        <div class="w-[250px] h-[250px] m-auto">
           <img :src="restaurant.logoImage" alt="">
         </div>
       </div>
@@ -64,29 +64,15 @@
     <div class="w-[500px] m-auto">
       <input type="datetime-local" v-model="chooseTime" class="text-center w-[500px] text-xl border-black p-2">
     </div>
-    <div class="flex py-4 justify-between">
+    <div class="flex py-4 justify-center" v-for="table in tableSize">
       <img src="/tableIcon.png" alt="" class="mx-5">
       <div class="py-8 border-2 border-black grow">
-        <span class="font-bold">Normal Table</span><br>
-        (For 1 - 2 customers)
+        <span class="font-bold text-xl">Table Size : {{ table }} seats</span><br>
       </div>
 
       <div class="items-center border-2 mx-5 py-10">
-        <input type="number" class="text-3xl w-[60px] text-center" v-model="numberOfNormal">
+        <input type="radio" class="w-[40px] h-[40px]" :value="table" v-model="picked">
       </div>
-    </div>
-
-    <div class="flex py-4 justify-between">
-      <img src="/tableIcon.png" alt="" class="mx-5">
-      <div class="py-8 border-2 border-black grow">
-        <span class="font-bold">Big Table</span><br>
-        (For 3 or more customers)
-      </div>
-
-      <div class="items-center py-10 border-2 mx-5">
-        <input type="number" class="text-3xl w-[60px] text-center" v-model="numberOfBig">
-      </div>
-
     </div>
     <div class="cp">
       <button class="activeBtn" @click="submitBookingForm">Accept</button>
@@ -99,17 +85,15 @@ definePageMeta({
   middleware : ['auth']
 })
 
+const token = useCookie("token")
 const route = useRoute().params.restaurantId
 const runtime = useRuntimeConfig();
-console.log(route);
 
 useHead({
   title: "Restaurant"
 })
 
 const showBooking = ref(false)
-
-const numberofSeat = ref([])
 const chooseTime = ref("");
 
 const {data} = await useFetch(runtime.public.API_URL + "content/viewRestaurant",{
@@ -120,22 +104,72 @@ const {data} = await useFetch(runtime.public.API_URL + "content/viewRestaurant",
 
 const restaurant = ref(toRaw(data.value))
 
+const {data:tables} = await useFetch(runtime.public.API_URL + "booking/allTable",{
+  query:{
+    name: route
+  }
+})
+
+const tableSize = ref(toRaw(tables.value))
+const picked =ref(tableSize.value[0]);
 
 const bookingPopUp = () =>{
   showBooking.value = !showBooking.value
 }
 
-const submitBookingForm = () =>{
-  // if(numberOfNormal.value < 0 || numberOfBig.value < 0){
-  //   alert("number of tables can't be less than 0");
-  // }else{
-  //   const date = new Date(chooseTime.value)
-  //   const year = date.getFullYear();
-  //   const month = date.getMonth() + 1;
-  //   const dateTh = date.getDate();
-  //   const time = `${date.getHours()}:${date.getMinutes()}`
-  //   alert("OK")
-  // }
+const submitBookingForm = async() =>{
+  let date = new Date(chooseTime.value)
+  if(isNaN(date)){
+    alert("Please input date")
+    return
+  }
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const dateTh = date.getDate();
+  const day = date.getDay();
+  let time = "";
+  if(date.getHours() < 10 && date.getMinutes() < 10){
+    time = `0${date.getHours()}:0${date.getMinutes()}`
+  }else if(date.getHours() < 10){
+    time = `0${date.getHours()}:${date.getMinutes()}`
+  }else if(date.getMinutes() < 10){
+    time = `${date.getHours()}:0${date.getMinutes()}`
+  }else{
+    time = `${date.getHours()}:${date.getMinutes()}`
+  }
+  let dateThText = "";
+  if(dateTh < 10){
+    dateThText = `0${dateTh}`
+  }else{
+    dateThText = `${dateTh}`
+  }
+
+  try{
+    const {data:booking} = await useFetch(runtime.public.API_URL + "booking",{
+      method: 'post',
+      body: {
+        time: time,
+        year: year,
+        month: month,
+        dayTh: dateThText,
+        restaurantName: route,
+        tokenId: token.value,
+        numSeat: picked.value,
+        dayOfWeek: day
+      }
+    })
+
+    const checkError = String(toRaw(booking.value));
+    if(checkError.slice(0,6) === "Error:"){
+        throw checkError
+    }
+    navigateTo("/booking")
+  }catch(error){
+    alert(error)
+  }
+    
+
+  
 }
 </script>
 
