@@ -16,7 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '~/store/useUserStore';
 
 const runtime = useRuntimeConfig();
 
