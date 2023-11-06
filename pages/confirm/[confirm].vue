@@ -2,11 +2,12 @@
   <div>
     <Topnav :logout-btn="true"/>
     <div class="bg-form">
-      <form class="container" @submit="acceptSignUP">
+      <form class="container" @submit.prevent="acceptSignUP">
         <br>
         <h1>Confirm your email</h1>
         <h2>Confirmation OTP sent to</h2>
         <p>{{ email }}</p>
+        <p>{{ refernece }}</p>
         <div class="textField">
           <label for="">OTP</label>
           <input type="text" v-model="pinText"><br>
@@ -34,6 +35,7 @@ useHead({
   const pinText = ref("");
   const email = useRoute().params.confirm;
   const showLoading = ref(false)
+  let refernece = useCookie<string>('reference-otp')
 
   async function acceptSignUP() {
     showLoading.value = true
@@ -50,7 +52,6 @@ useHead({
       if(check.slice(0, 6) === "Error:"){
         throw responseData.value
       }else{
-        alert("SuccessFul")
         navigateTo('/login')
       }
     }catch(error){

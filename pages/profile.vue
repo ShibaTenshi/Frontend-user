@@ -17,6 +17,9 @@
       <div class="cp">
         <button type="button" class="activeBtn" @click="popUpCP">Change Password</button>
       </div>
+      <div class="cp">
+          <button type="submit" class="bg-white px-3 py-1 text-xl border-red-400 border-4 hover:rounded-full" @click="clickAcceptRemove">Delete Account</button>
+        </div>
     </div>
 
     <div class="profile" v-if="changePassword">
@@ -45,6 +48,15 @@
     <!-- <label>Upload File</label> -->
     <!-- <input type="file" @change="onChangeFile">
     <button @click="onSumbit" class="border-black border-2 px-5 py-2">Upload</button> -->
+
+    <div class="w-[500px] h-[300px] bg-gray-400 absolute top-1/2 left-1/2 -translate-x-1/2 text-center" v-if="showAcceptRemove">
+            <br>
+            <p class="font-bold text-2xl">Are you sure to delete your account?</p>
+            <br>
+            <br>
+            <button class="px-5 py-2 bg-red-400 m-5" @click="clickCancel">Cancel</button>
+            <button class="px-5 py-2 bg-green-400 m-5" @click="removeAccount">Accept</button>
+        </div>
   </div>
 </template>
 
@@ -64,6 +76,7 @@ const cpassword = ref("")
 
 const changePassword = ref(false)
 const changeImage = ref(false)
+const showAcceptRemove = ref(false)
 
 const runtime = useRuntimeConfig();
 
@@ -87,7 +100,6 @@ const pictureText = ref(toRaw(data.value))
 
 
 const imageFile = ref<String>(runtime.public.STORAGE_URL + pictureText.value)
-console.log(imageFile.value)
 
 // https://content-shibaqueue.doksakura.com/customer/${userStore.user.username}/${data.value}
 const popUpCP = () =>{
@@ -126,7 +138,7 @@ const onSumbit = async () =>{
       body
     })
 
-    alert('Uploaded')
+    location.reload()
   }catch(error){
     console.log(error)
   }
@@ -157,6 +169,26 @@ const changePasswordHandler = async () =>{
   if(error.value == null){
     alert("successful")
   }
+}
+
+const clickAcceptRemove = () =>{
+  showAcceptRemove.value = true
+}
+
+const clickCancel = () =>{
+  showAcceptRemove.value = false
+}
+
+const removeAccount = async () =>{
+  const {data:user} = await useFetch(runtime.public.API_URL + "auth/deleteUser",{
+    query: {
+      tokenId: cookie.value
+    },
+    method: 'post'
+  })
+  console.log(toRaw(user.value))
+  cookie.value = ""
+  navigateTo("/login")
 }
 </script>
 

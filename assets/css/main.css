@@ -38,7 +38,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .bg-form{
-    @apply bg-[url('pagelogin.png')] bg-left bg-[length_490px] bg-no-repeat min-h-[600px] relative max-w-full m-auto border-black border-[2px]
+    @apply bg-[url('pagelogin.png')] bg-left bg-[length_490px] bg-no-repeat min-h-[870px] relative max-w-full m-auto
 }
 
 .container{

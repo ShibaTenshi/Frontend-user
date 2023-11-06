@@ -43,7 +43,6 @@ defineProps({
       query: {token: cookie.value}
       })
       cookie.value = ""
-      alert("You Log-out Complete!!")
       navigateTo('/login')
     }catch(error){
       console.error(error)

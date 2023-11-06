@@ -4,6 +4,13 @@
     <div class="bg-form">
       <form action="" class="container" @submit.prevent="requestLogin">
         <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br><br>
         <h1>Log-In</h1>
         <div class="textField">
           <label for="">Username</label>
