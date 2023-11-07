@@ -70,7 +70,7 @@
         <span class="font-bold text-xl">Table Size : {{ table }} seats</span><br>
       </div>
 
-      <div class="items-center border-2 mx-5 py-10">
+      <div class="items-center mx-5 py-10">
         <input type="radio" class="w-[40px] h-[40px]" :value="table" v-model="picked">
       </div>
     </div>

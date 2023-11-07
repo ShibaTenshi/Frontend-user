@@ -7,7 +7,7 @@
         <h1>Confirm your email</h1>
         <h2>Confirmation OTP sent to</h2>
         <p>{{ email }}</p>
-        <p>{{ refernece }}</p>
+        <p>Reference-OTP : {{ refernece }}</p>
         <div class="textField">
           <label for="">OTP</label>
           <input type="text" v-model="pinText"><br>
